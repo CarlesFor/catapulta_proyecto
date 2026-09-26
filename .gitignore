@@ -1,0 +1,31 @@
+.build/
+__pycache__/
+*.py[cod]
+.idea/
+.venv/
+venv/
+
+
+# Credenciales y configuracion privada
+wifi_config.h
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# Binarios, registros y configuracion local
+*.bin
+*.elf
+*.exe
+*.o
+*.a
+*.log
+.vscode/
+
+# Guia anterior local; la version actualizada esta en docs/
+/Guia_montaje_catapulta_ESP32.pdf

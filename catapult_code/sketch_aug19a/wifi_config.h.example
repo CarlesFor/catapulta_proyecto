@@ -1,0 +1,7 @@
+#pragma once
+
+// Copia este archivo como wifi_config.h en esta misma carpeta.
+// Rellena tus credenciales solo en wifi_config.h (excluido de Git).
+// El ESP32 clasico utiliza redes Wi-Fi de 2,4 GHz.
+#define CATAPULT_WIFI_SSID "NOMBRE_DE_TU_WIFI"
+#define CATAPULT_WIFI_PASSWORD "CONTRASENA_DE_TU_WIFI"

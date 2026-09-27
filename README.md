@@ -1,89 +1,50 @@
-# Minijuego de la catapulta
+# Catapulta con ESP32 · empieza aquí
 
-Detén el marcador lo más cerca posible del centro de la barra. El centro verde da el 100 % del recorrido del servo; los extremos rojos, el 10 %.
+Un minijuego en el ordenador mueve un servo por Wi-Fi: pulsa **Espacio** cerca del centro de la barra para conseguir más recorrido.
 
-## Cómo arrancar
+**¿Es tu primera vez? Sigue la [guía desde cero](docs/GUIA_DESDE_CERO.md), en orden.** También puedes [descargar el mismo contenido en PDF](docs/Guia_montaje_catapulta_ESP32.pdf). La guía está orientada a Windows y no requiere saber usar Git ni programar.
 
-1. Abre `catapult_code/sketch_aug19a/sketch_aug19a.ino` en Arduino IDE. Copia `wifi_config.h.example` como `wifi_config.h` en la misma carpeta y escribe allí tu red y contraseña (este archivo queda excluido de Git). Selecciona la placa **ESP32 Dev Module** y su puerto.
-2. Sube el sketch actualizado. El servo usa **GPIO 26**, empieza en **120°** y vuelve a esa posición un segundo después de cada disparo.
-3. Comprueba la IP en el monitor serie a **115200 baudios**. El ordenador y el ESP32 deben estar en la misma red local.
-4. Desde la carpeta del proyecto, ejecuta:
+## Qué podrás hacer
 
-   ```powershell
-   py python_code/app_catapulta.py
-   ```
+1. Descargar el proyecto e instalar los programas.
+2. Probar el juego sin conectar ninguna placa.
+3. Cablear el ESP32 y el servo con un esquema.
+4. Configurar tu Wi-Fi y cargar el programa en el ESP32.
+5. Conectar el juego y comprobar el movimiento antes de montar el brazo.
 
-La aplicación utiliza Tkinter y la biblioteca estándar de Python; no necesita paquetes de `pip`. La IP inicial `192.0.2.1` es solo un ejemplo: sustitúyela en la interfaz por la que indique el monitor serie.
+**La estructura física todavía no tiene un plano reproducible:** faltan el modelo exacto de servo y fuente, las medidas y las fijaciones. La guía explica el montaje general y señala esos datos pendientes. El software se ha probado automáticamente; el conjunto mecánico necesita validación con el montaje real.
 
-Para abrir directamente en modo práctica, sin conectar la placa:
+## Primero, prueba el juego sin hardware
+
+Descarga **Code → Download ZIP** y pulsa **Extraer todo**. Instala [Python para Windows](https://www.python.org/downloads/windows/). Abre la carpeta extraída que contiene este README, escribe `powershell` en la barra de direcciones del Explorador y pulsa Intro.
+
+Ejecuta:
 
 ```powershell
 py python_code/app_catapulta.py --demo
 ```
 
-## Cómo jugar
+Debe abrirse una ventana con **PRÁCTICA** y una barra en movimiento. Haz clic en la barra y pulsa **Espacio** para detenerla; vuelve a pulsarlo para otra ronda. No se necesita placa en este modo. Si no se abre, consulta el apartado de problemas de la guía.
 
-- **Práctica:** juega sin enviar órdenes de disparo al ESP32.
-- **Modo real:** utiliza la IP de la placa para enviar el resultado de cada tiro.
-- Pulsa **Espacio** mientras se mueve el marcador para detenerlo. En modo real, esto envía una única orden de disparo.
-- Pulsa **Espacio** otra vez para iniciar una nueva ronda.
+## Cuando ya hayas preparado la placa
 
-La aplicación no reintenta automáticamente los disparos si falla la conexión. Si detecta el firmware anterior, te pedirá que subas el sketch actualizado.
+Abre el juego con el comando anterior. Desmarca **Práctica**, sustituye la IP de ejemplo por la que muestre el monitor serie del ESP32 y pulsa **Conectar**. Espera a ver **ESP32 CONECTADO** antes de probar el servo.
 
-## Cómo se calcula el tiro
+La IP `192.0.2.1` es solo un ejemplo; no corresponde a tu placa. La guía explica cómo obtener la tuya.
 
-La posición `x` va de `0` (extremo izquierdo) a `1` (extremo derecho):
+## Dónde está cada cosa
 
-```text
-precisión = 1 - abs(2 × x - 1)
-factor = 0,10 + 0,90 × precisión
-recorrido = 120° × factor
-posición objetivo = 120° - recorrido
-```
+| Archivo | Para qué sirve |
+| --- | --- |
+| [Guía desde cero](docs/GUIA_DESDE_CERO.md) | Materiales, instalación, cableado, carga, primer tiro y problemas |
+| [Guía PDF](docs/Guia_montaje_catapulta_ESP32.pdf) | La misma guía para guardar o imprimir |
+| [Programa del ESP32](catapult_code/sketch_aug19a/sketch_aug19a.ino) | Se abre con Arduino IDE y se carga en la placa |
+| [Plantilla Wi-Fi](catapult_code/sketch_aug19a/wifi_config.h.example) | Se copia como `wifi_config.h` y se rellena solo en tu ordenador |
+| [Juego](python_code/app_catapulta.py) | Se ejecuta en el ordenador |
+| [Referencia técnica](docs/REFERENCIA_TECNICA.md) | Fórmulas, comunicación y pruebas para quien quiera modificar el proyecto |
 
-| Posición del marcador | Factor | Recorrido | Posición objetivo |
-| --- | --- | --- | --- |
-| Centro | 1,00 | 120° | 0° |
-| A mitad de camino entre centro y extremo | 0,55 | 66° | 54° |
-| Extremo | 0,10 | 12° | 108° |
+## Tus datos permanecen locales
 
-El servo parte de 120°, se mueve hacia la posición objetivo y regresa a 120° tras un segundo. El porcentaje de potencia representa **recorrido angular**, no energía ni distancia de lanzamiento medidas.
+Escribe tu red y contraseña únicamente en `wifi_config.h`, que Git ignora. También se excluyen los binarios compilados, porque pueden contener esas credenciales. No compartas ese archivo ni un ZIP de tu carpeta de trabajo sin revisarlo: `.gitignore` solo protege las operaciones de Git.
 
-El ESP32 redondea el recorrido a grados enteros antes de ordenar el movimiento. Por ejemplo, un factor de 0,98 produce 117,6° de recorrido calculado y una orden de 118° de recorrido.
-
-## Archivos y comunicación
-
-- `python_code/app_catapulta.py`: interfaz, animación y controles del juego.
-- `python_code/game_core.py`: cálculo del tiro y comunicación HTTP.
-- `catapult_code/sketch_aug19a/sketch_aug19a.ino`: conexión Wi-Fi, servidor y control del servo.
-
-`GET /estado` devuelve JSON con la versión de API `1`. `POST /disparar` recibe la potencia y un identificador de la orden. El ESP32 controla el movimiento y el retorno del servo.
-
-Para ejecutar las pruebas desde la carpeta del proyecto:
-
-```powershell
-py -m unittest discover -s python_code/tests -v
-```
-
-Estas pruebas comprueban el software; el movimiento y el resultado del lanzamiento necesitan validación con la catapulta física.
-
-## Privacidad
-
-Las credenciales Wi-Fi se guardan solo en `wifi_config.h`, excluido de Git. Publica únicamente la plantilla `wifi_config.h.example`. Los binarios compilados pueden contener credenciales y también quedan excluidos, junto con cachés y archivos del editor.
-
-## Herramientas adicionales
-
-- `python_code/prueba_conexion.py`: comprueba `/estado`; usa `--ip` con la IP de tu placa.
-- `tests/firmware_host/`: pruebas del firmware con dobles de Arduino, sin placa.
-- `tools/build_hardware_guide.py`: genera la guía PDF; requiere ReportLab y las fuentes Arial de Windows.
-
-Para ejecutar las pruebas del firmware con un compilador C++17, crea `.build` si no existe y ejecuta:
-
-```powershell
-g++ -std=c++17 -I tests/firmware_host tests/firmware_host/test_firmware.cpp -o .build/test_firmware.exe
-.build/test_firmware.exe
-```
-
-Las pruebas del firmware requieren `wifi_config.h`; para pruebas sin placa basta con copiar la plantilla sin cambiar sus valores.
-
-Guía de montaje: [descargar PDF](docs/Guia_montaje_catapulta_ESP32.pdf).
+La aplicación usa Tkinter y la biblioteca estándar de Python; para jugar no necesitas instalar paquetes con `pip`.

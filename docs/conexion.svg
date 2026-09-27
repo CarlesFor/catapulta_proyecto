@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="511.27559055118115" height="210" preserveAspectRatio="xMinYMin meet" viewBox="0 0 511 210" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="511.27559055118115" height="210"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-210)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="92" width="155" height="100" rx="7" ry="7" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,96%,96%); fill-rule: evenodd;"/>
+			<text x="12" y="172" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,344) scale(1,-1)">ESP32</text>
+			<text x="12" y="151" style="font-family: Helvetica; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,302) scale(1,-1)">USB al ordenador</text>
+			<text x="89" y="127" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,254) scale(1,-1)">GPIO26</text>
+			<text x="113" y="106" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,212) scale(1,-1)">GND</text>
+			<rect x="365" y="60" width="146" height="110" rx="7" ry="7" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,96%,96%); fill-rule: evenodd;"/>
+			<text x="378" y="149" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,298) scale(1,-1)">SERVO</text>
+			<text x="378" y="124" style="font-family: Helvetica; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,248) scale(1,-1)">Señal</text>
+			<text x="378" y="99" style="font-family: Helvetica; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,198) scale(1,-1)">V+ (5 V)</text>
+			<text x="378" y="74" style="font-family: Helvetica; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,148) scale(1,-1)">GND</text>
+			<rect x="0" y="0" width="155" height="69" rx="7" ry="7" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,96%,96%); fill-rule: evenodd;"/>
+			<text x="12" y="48" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,96) scale(1,-1)">FUENTE EXTERNA</text>
+			<text x="12" y="28" style="font-family: Helvetica; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,56) scale(1,-1)">5 V regulados</text>
+			<text x="137" y="28" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,56) scale(1,-1)">+</text>
+			<text x="137" y="9" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,18) scale(1,-1)">-</text>
+			<path d="M 155,130 L 365,130 Z" style="stroke: rgb(71%,39%,4%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="213" y="138" style="font-family: Helvetica; font-size: 9px;fill: rgb(71%,39%,4%); stroke:none;" transform="translate(0,276) scale(1,-1)">Señal</text>
+			<path d="M 155,32 L 300,32 Z" style="stroke: rgb(78%,23%,27%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 300,32 L 300,104 Z" style="stroke: rgb(78%,23%,27%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 300,104 L 365,104 Z" style="stroke: rgb(78%,23%,27%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="308" y="112" style="font-family: Helvetica; font-size: 9px;fill: rgb(78%,23%,27%); stroke:none;" transform="translate(0,224) scale(1,-1)">+5 V</text>
+			<path d="M 155,110 L 197,110 Z" style="stroke: rgb(12%,20%,23%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 197,110 L 197,12 Z" style="stroke: rgb(12%,20%,23%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 155,12 L 341,12 Z" style="stroke: rgb(12%,20%,23%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 341,12 L 341,79 Z" style="stroke: rgb(12%,20%,23%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 341,79 L 365,79 Z" style="stroke: rgb(12%,20%,23%); stroke-linecap: butt; stroke-width: 2;"/>
+			<circle cx="197" cy="12" r="3" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,20%,23%); fill-rule: evenodd;"/>
+			<text x="217" y="20" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(12%,20%,23%); stroke:none;" transform="translate(0,40) scale(1,-1)">GND común</text>
+		</g>
+	</g>
+</svg>

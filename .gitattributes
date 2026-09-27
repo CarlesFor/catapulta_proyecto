@@ -1,0 +1,2 @@
+# Los PDF deben conservar sus bytes, sin conversion de saltos de linea.
+*.pdf binary

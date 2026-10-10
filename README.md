@@ -1,4 +1,4 @@
-# Catapulta con ESP32 · empieza aquí
+# Catapulta con ESP32
 
 Un minijuego en el ordenador mueve un servo por Wi-Fi: pulsa **Espacio** cerca del centro de la barra para conseguir más recorrido.
 
